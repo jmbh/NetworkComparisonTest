@@ -145,7 +145,9 @@ NCT <- function(data1, data2, gamma, it = 100, binary.data=FALSE, paired=FALSE, 
                   edges.tested = edges.tested,
                   einv.real = einv.real,
                   einv.pvals = einv.pvals,
-                  einv.perm = einv.perm)
+                  einv.perm = einv.perm, 
+                  nw1 = nw1,
+                  nw2 = nw2)
     }
     
     if (progressbar==TRUE) close(pb)
@@ -159,7 +161,9 @@ NCT <- function(data1, data2, gamma, it = 100, binary.data=FALSE, paired=FALSE, 
         glstrinv.perm = glstrinv.perm,
         nwinv.real = nwinv.real,
         nwinv.pval = sum(nwinv.perm >= nwinv.real)/it,
-        nwinv.perm = nwinv.perm
+        nwinv.perm = nwinv.perm, 
+        nw1 = nw1,
+        nw2 = nw2
       )
     }
     
