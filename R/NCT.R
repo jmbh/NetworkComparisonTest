@@ -86,7 +86,7 @@ NCT <- function(data1,
         x2perm <- dataall[b[-s],]
         
         cor_x1 <- cor(x1perm)
-        cor_x2 <- cor(x1perm)
+        cor_x2 <- cor(x2perm)
         
         if(make.positive.definite){
           cor_x1 <- make.positive.definite(cor(x1))
@@ -112,7 +112,7 @@ NCT <- function(data1,
         x2perm <- rbind(x2perm,x1[s==2,])
         
         cor_x1 <- cor(x1perm)
-        cor_x2 <- cor(x1perm)
+        cor_x2 <- cor(x2perm)
         
         if(make.positive.definite){
           cor_x1 <- make.positive.definite(cor(x1))
