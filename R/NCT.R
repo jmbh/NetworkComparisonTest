@@ -89,8 +89,8 @@ NCT <- function(data1,
         cor_x2 <- cor(x2perm)
         
         if(make.positive.definite){
-          cor_x1 <- make.positive.definite(cor(x1))
-          cor_x2 <- make.positive.definite(cor(x2))
+          cor_x1 <- make.positive.definite(cor_x1)
+          cor_x2 <- make.positive.definite(cor_x2)
         }
         
         r1perm <- EBICglasso(cor_x1,nrow(x1perm),gamma=gamma)
@@ -115,8 +115,8 @@ NCT <- function(data1,
         cor_x2 <- cor(x2perm)
         
         if(make.positive.definite){
-          cor_x1 <- make.positive.definite(cor(x1))
-          cor_x2 <- make.positive.definite(cor(x2))
+          cor_x1 <- make.positive.definite(cor_x1)
+          cor_x2 <- make.positive.definite(cor_x2)
         }
         
         r1perm <- EBICglasso(cor(x1perm),nrow(x1perm),gamma=gamma)
