@@ -47,12 +47,16 @@ NCT <- function(data1,
     
     cor_x1 <- cor(x1)
     cor_x2 <- cor(x2)
-    
-    if(make.positive.definite){
-      cor_x1 <- make.positive.definite(cor(x1))
-      cor_x2 <- make.positive.definite(cor(x2))
-    }
 
+    if(make.positive.definite){
+      # cor_x1 <- make.positive.definite(cor_x1)
+      # cor_x2 <- make.positive.definite(cor_x2)
+      cor_x1 <- matrix(nearPD(cor_x1, corr=TRUE)$mat, ncol = nvars)
+      cor_x1 <- (cor_x1 + t(cor_x1)) / 2 # make symmetric
+      cor_x2 <- matrix(nearPD(cor_x2, corr=TRUE)$mat, ncol = nvars)
+      cor_x2 <- (cor_x2 + t(cor_x2)) / 2 # make symmetric
+    }
+    
     nw1 <- EBICglasso(cor_x1,nrow(x1),gamma=gamma)
     nw2 <- EBICglasso(cor_x2,nrow(x2),gamma=gamma)
     if(weighted==FALSE){
@@ -89,9 +93,15 @@ NCT <- function(data1,
         cor_x2 <- cor(x2perm)
         
         if(make.positive.definite){
-          cor_x1 <- make.positive.definite(cor_x1)
-          cor_x2 <- make.positive.definite(cor_x2)
+          # cor_x1 <- make.positive.definite(cor_x1)
+          # cor_x2 <- make.positive.definite(cor_x2)
+          cor_x1 <- matrix(nearPD(cor_x1, corr=TRUE)$mat, ncol = nvars)
+          cor_x1 <- (cor_x1 + t(cor_x1)) / 2 # make symmetric
+          cor_x2 <- matrix(nearPD(cor_x2, corr=TRUE)$mat, ncol = nvars)
+          cor_x2 <- (cor_x2 + t(cor_x2)) / 2 # make symmetric
         }
+        
+        
         
         r1perm <- EBICglasso(cor_x1,nrow(x1perm),gamma=gamma)
         r2perm <- EBICglasso(cor_x2,nrow(x2perm),gamma=gamma)
@@ -115,9 +125,14 @@ NCT <- function(data1,
         cor_x2 <- cor(x2perm)
         
         if(make.positive.definite){
-          cor_x1 <- make.positive.definite(cor_x1)
-          cor_x2 <- make.positive.definite(cor_x2)
+          # cor_x1 <- make.positive.definite(cor_x1)
+          # cor_x2 <- make.positive.definite(cor_x2)
+          cor_x1 <- matrix(nearPD(cor_x1, corr=TRUE)$mat, ncol = nvars)
+          cor_x1 <- (cor_x1 + t(cor_x1)) / 2 # make symmetric
+          cor_x2 <- matrix(nearPD(cor_x2, corr=TRUE)$mat, ncol = nvars)
+          cor_x2 <- (cor_x2 + t(cor_x2)) / 2 # make symmetric
         }
+        
         
         r1perm <- EBICglasso(cor(x1perm),nrow(x1perm),gamma=gamma)
         r2perm <- EBICglasso(cor(x2perm),nrow(x2perm),gamma=gamma)
